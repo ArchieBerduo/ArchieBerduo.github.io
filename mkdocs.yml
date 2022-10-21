@@ -1,5 +1,5 @@
 # ref link: https://alinex.gitlab.io/env/mkdocs/
-
+#1 through 10 changable
 # Site Information
 site_name: Alan Berduo
 site_url: https://archieberduo.github.io/
@@ -19,7 +19,7 @@ theme:
   custom_dir: docs/assets/overrides
   icon: # https://www.materialpalette.com/icons
     logo: material/book-open-page-variant
-  favicon: assets/images/favicon.png
+  favicon: assets/images/favicon.png  #change icon
   font:
     text: Roboto
     code: Roboto Mono

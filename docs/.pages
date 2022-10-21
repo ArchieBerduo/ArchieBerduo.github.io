@@ -1,6 +1,6 @@
 nav:
     - index.md
-    - Cloud: cloud
+    - Cloud1: cloud
     - DevOps: devops
     - Networking: networking
     - Tips&Tricks: tips-tricks
