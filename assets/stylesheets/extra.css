@@ -6,9 +6,9 @@
 
 /* theme colors */
   :root > * {
-    --md-primary-fg-color:        #05194d;
-    --md-primary-fg-color--light: #4d6dd8;
-    --md-primary-fg-color--dark:  #1207a7;
+    --md-primary-fg-color:        #4d3c05;
+    --md-primary-fg-color--light: #d8cf4d;
+    --md-primary-fg-color--dark:  #a70777;
   }
   
   /* wrap code block  */
