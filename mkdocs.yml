@@ -1,0 +1,113 @@
+# ref link: https://alinex.gitlab.io/env/mkdocs/
+
+# Site Information
+site_name: Gtz4All
+site_url: https://gtz4all.github.io/
+site_description: Gtz4All Reference Documentation
+site_author: Kervin Gtz
+site_description: >-
+  Providing easy to deploy, reusable and automated solution for defining, provisioning and managing secure and scalable public and private cloud infrastructure environment. 
+copyright: "Copyright 2022 <a href='https://gtz4all.github.io'>Gtz4All</a>. All Rights Reserved." 
+
+# using awesome-pages nav structure
+nav:
+  - ...
+
+# Material Mkdocs Theme + Extras
+theme:
+  name: material
+  custom_dir: docs/assets/overrides
+  icon: # https://www.materialpalette.com/icons
+    logo: material/book-open-page-variant
+  favicon: assets/images/favicon.png
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    # - navigation.instant
+    - header.autohide
+    - navigation.prune 
+
+  palette: # https://www.materialpalette.com/colors
+    - scheme: default
+      accent: deep purple
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      accent: teal
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+  include_sidebar: true
+
+plugins:
+  - search
+  - awesome-pages
+  - meta-descriptions
+  - external-markdown
+  - git-snippet
+  - table-reader
+  - blogging
+  - drawio_file
+  - macros
+
+
+extra:
+  generator: false
+  social:
+    - icon: material/home
+      link: 'https://gtz4all.github.io/'
+    - icon: material/github
+      link: 'https://github.com/gtz4all'
+    - icon: material/email
+      link: 'gtz4all@gmail.com'
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+# Extensions
+markdown_extensions:
+  - meta
+  - codehilite
+  - tables
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.snippets
