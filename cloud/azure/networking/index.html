@@ -1,0 +1,2074 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cloud Computing Documentation">
+      
+      
+        <meta name="author" content="Kervin Gtz">
+      
+      
+        <link rel="canonical" href="https://gtz4all.github.io/cloud/azure/networking/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Azure Networking - Gtz4All</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gtz4All - Azure Networking" />
+  <meta property="og:description" content="Providing easy to deploy, reusable and automated solution for defining, provisioning and managing secure and scalable public and private cloud infrastructure environment. " />
+  <meta property="og:url" content="https://gtz4all.github.io/cloud/azure/networking/" />
+  <meta property="og:image" content="<url>" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="deep-purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#virtual-networks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Gtz4All" class="md-header__button md-logo" aria-label="Gtz4All" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gtz4All
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Azure Networking
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../intro/" class="md-tabs__link md-tabs__link--active">
+        Cloud
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../devops/intro/" class="md-tabs__link">
+        DevOps
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../networking/intro/" class="md-tabs__link">
+        Networking
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tips-tricks/intro/" class="md-tabs__link">
+        Tips&Tricks
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../contact-us/intro/" class="md-tabs__link">
+        Contact Us
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Gtz4All" class="md-nav__button md-logo" aria-label="Gtz4All" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    Gtz4All
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Cloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cloud" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Cloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          AWS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="AWS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          AWS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/default-vpc-cleanup/" class="md-nav__link">
+        Default Vpc Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/ec2-dynamic-dns/" class="md-nav__link">
+        EC2 Cross-Account Dynamic DNS Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/lambda-functions/" class="md-nav__link">
+        Lambda Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/plugin-test/" class="md-nav__link">
+        Plugin test
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aws/three-tier-vpc/" class="md-nav__link">
+        Three tier vpc
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Azure
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Azure" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Azure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing-zones/" class="md-nav__link">
+        Landing Zones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgmt-groups/" class="md-nav__link">
+        Azure Management Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Azure Networking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Azure Networking
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-networks" class="md-nav__link">
+    Virtual networks
+  </a>
+  
+    <nav class="md-nav" aria-label="Virtual networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    Components
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-firewalls" class="md-nav__link">
+    Azure Firewalls
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Firewalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-services" class="md-nav__link">
+    Endpoint Services
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-links" class="md-nav__link">
+    Private Links
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#private-endpoint" class="md-nav__link">
+    Private Endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-bastion" class="md-nav__link">
+    Azure Bastion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-network-peering" class="md-nav__link">
+    Virtual Network Peering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-tables" class="md-nav__link">
+    Route Tables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateways" class="md-nav__link">
+    Gateways
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-wan" class="md-nav__link">
+    Virtual WAN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancing" class="md-nav__link">
+    Load balancing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tshoo/" class="md-nav__link">
+        Azure Troubleshooting Notes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          GCP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GCP" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          GCP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gcp/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gcp/gcloud/" class="md-nav__link">
+        Gcloud Command Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          DevOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DevOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          DevOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Terraform
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terraform" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Terraform
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/terraform/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Ansible
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ansible" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/ansible/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Docker" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/docker/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/docker/hugo.docker.container/" class="md-nav__link">
+        Building a Hugo Docker Containers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/docker/hugo.docker.troubleshooting/" class="md-nav__link">
+        Working with Hugo Container
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5">
+          Kubernetes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/kubernetes/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/kubernetes/kubernetes-cluster/" class="md-nav__link">
+        Kubernetes Cluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/kubernetes/kubernetes-deployments/" class="md-nav__link">
+        Kubernetes Deployments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/kubernetes/kubernetes_services/" class="md-nav__link">
+        Kubernetes Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6">
+          Databases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Databases" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Databases
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/databases/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/databases/mongodb/" class="md-nav__link">
+        MongoDB
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_7">
+          Web Services
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Web Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          Web Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/webservices/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/webservices/environmentvars/" class="md-nav__link">
+        Apache Environment Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops/webservices/http-server-with-dynamic-content/" class="md-nav__link">
+        HTTP Server with Dynamic Content
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Networking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Networking" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Networking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../networking/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Arista
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Arista" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Arista
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../networking/arista/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Cisco
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cisco" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cisco
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../networking/cisco/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Tips&Tricks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tips&Tricks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Tips&Tricks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tips-tricks/intro/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Contact Us
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contact Us" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Contact Us
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact-us/intro/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact-us/aboutme/" class="md-nav__link">
+        Aboutme
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-networks" class="md-nav__link">
+    Virtual networks
+  </a>
+  
+    <nav class="md-nav" aria-label="Virtual networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    Components
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-firewalls" class="md-nav__link">
+    Azure Firewalls
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Firewalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-services" class="md-nav__link">
+    Endpoint Services
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-links" class="md-nav__link">
+    Private Links
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#private-endpoint" class="md-nav__link">
+    Private Endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-bastion" class="md-nav__link">
+    Azure Bastion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-network-peering" class="md-nav__link">
+    Virtual Network Peering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-tables" class="md-nav__link">
+    Route Tables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateways" class="md-nav__link">
+    Gateways
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-wan" class="md-nav__link">
+    Virtual WAN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancing" class="md-nav__link">
+    Load balancing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Azure Networking</h1>
+
+<h4 id="virtual-networks">Virtual networks<a class="headerlink" href="#virtual-networks" title="Permanent link">&para;</a></h4>
+<h6 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h6>
+<ul>
+<li>
+<p>private and secure infrastructure</p>
+<p>VM residing inside a virtual network are able to privately communicate with each other access other azure resources</p>
+</li>
+<li>
+<p>Network Segmentation</p>
+<p>Virtual Networks are isolated from each other</p>
+</li>
+<li>
+<p>Per Subscription / Region</p>
+<p>VNETs are region and subscription specific. </p>
+</li>
+</ul>
+<h6 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h6>
+<ul>
+<li>
+<p>Subnets</p>
+<p>Subnets devide a virtual network into smaller segments. These segments can have unique security policies from each other. Some 
+services require dedicated subnets such as network gateways, Bastion, and SQL Managed Instances</p>
+</li>
+<li>
+<p>Network Interfaces</p>
+<p>Network interfaces are use to connect virtuals machines to virtual networks. a virtual machine can have network interfaces in different subnets</p>
+</li>
+<li>
+<p>Network Security Groups (NSGs)</p>
+<p>Security groups filter inbound/outbound source/destination IP address/Port traffic based on a priority list of rules. they can be associated to 
+either <strong><em>subnets</em></strong> or <strong><em>network interfaces</em></strong>.</p>
+<p>NSGs are region specific ( just like VMs )</p>
+</li>
+<li>
+<p>Application Security Groups (ASGs)</p>
+<p>ASGs are used to group network interfaces based on purpose/usage. an ASG is similar to a <strong><em>tag</em></strong> on the network interface. a Network Security Group Rule can
+it destination set to an ASG.</p>
+<pre class="mermaid"><code>graph TD
+subgraph D[Virtual Private Network 10.0.0.0/26]
+  subgraph E[Subnet 10.0.1.0/24]
+    1[Virtual Machine 1]
+    2[Application Security Group: ASG1] --&gt; 1 
+  end
+  subgraph F[Subnet 10.0.2.0/24]
+    3[Virtual Machine 3]
+    4[Application Security Group: ASG1] --&gt; 3 
+  end
+  5[Network Security Group: NSG1&lt;br&gt;Direction: Inbound&lt;br&gt;Source: Internet&lt;br&gt;Destination: ASG1&lt;br&gt;Service: HTTPS&lt;br&gt;Action: Allow]
+end
+
+style 4 fill:#F0FFFF
+style 2 fill:#F0FFFF
+style D fill:#FFFFFF
+style 5 fill:#F0FFFF
+style E fill:#F0F8FF
+style F fill:#F0F8FF</code></pre>
+<h4 id="azure-firewalls">Azure Firewalls<a class="headerlink" href="#azure-firewalls" title="Permanent link">&para;</a></h4>
+<h6 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">&para;</a></h6>
+<ul>
+<li>Azure Firewall as a Service is used to provide monitor and protection based on rules between virtual network egress/ingress traffic</li>
+<li>provides defense in depth</li>
+<li>Azure firewall is deployed between VNET 1 and VNET2 and the Internet. incomming traffic from the internet will be inspected by the Azure firewall before allowing or denying access to VNET1/VNET2</li>
+</ul>
+<pre class="mermaid"><code>graph TD
+subgraph D[Azure]
+  subgraph A[Virtual Network1]
+  subgraph AA[Subnet]
+    AAA[VM]
+  end
+  end
+
+  subgraph B[Virtual Network1]
+  subgraph BB[Subnet]
+    BBB[VM]
+  end
+  end
+
+  subgraph C[Virtual Network1]
+  subgraph CC[Subnet]
+    CCC[Azure Firewall]
+  end
+  end
+
+end
+  F[Internet]
+
+style D fill:#FFFFFF
+
+style A fill:#F0FFFF
+style B fill:#F0FFFF
+style C fill:#F0FFFF
+
+style AA fill:#FFFFFF
+style BB fill:#FFFFFF
+style CC fill:#FFFFFF
+
+style AAA fill:#F0FFFF
+style BBB fill:#F0FFFF
+style CCC fill:#F0FFFF</code></pre>
+</li>
+</ul>
+<h4 id="endpoint-services">Endpoint Services<a class="headerlink" href="#endpoint-services" title="Permanent link">&para;</a></h4>
+<ul>
+<li>A service endpoints provide private connectivity between Virtual Networks and a range of Azure services, including Azure Storage, SQL Databases, and Key Vault.</li>
+<li>
+<p>communication travels across Azure backbone</p>
+<pre class="mermaid"><code>graph TD
+subgraph D[Azure]
+  subgraph A[fa:fa-bucket Azure Storage]
+  end
+  subgraph C[fa:fa-network-wired Virtual Network]
+  subgraph CC[Subnet]
+    CCC[Azure Firewall]
+  end
+  end
+
+end
+  F[Internet]
+style D fill:#FFFFFF
+style A fill:#F0FFFF
+style C fill:#F0FFFF
+style CC fill:#FFFFFF
+style CCC fill:#F0FFFF</code></pre>
+</li>
+</ul>
+<h4 id="private-links">Private Links<a class="headerlink" href="#private-links" title="Permanent link">&para;</a></h4>
+<ul>
+<li>provide private connectivity to Azure PaaS services.</li>
+<li>accessible on connected virtual networks and globally peered networks.</li>
+<li>DNS Integration supported</li>
+</ul>
+<h6 id="private-endpoint">Private Endpoint<a class="headerlink" href="#private-endpoint" title="Permanent link">&para;</a></h6>
+<ul>
+<li>a managed network interface used to provide connectivity to a private link</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Service Endpoints</label><label for="__tabbed_1_2">Private Endpoints</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Provides connectivity from a subnet to an entire Azure service</li>
+<li>cannot be used by on-premises networks</li>
+<li>uses routes to direct traffic</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Provides connectivity to single instance of an entire Azure service</li>
+<li>supports connected routes ( transitive routing )</li>
+<li>integrates with DNS</li>
+<li>data transfer fees(inbound/outbound)</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="azure-bastion">Azure Bastion<a class="headerlink" href="#azure-bastion" title="Permanent link">&para;</a></h4>
+<ul>
+<li>provides a managed secure remote management portal</li>
+<li>supports RDP and SSH</li>
+<li>supports Network Security Groups (NSGs)</li>
+</ul>
+<h4 id="virtual-network-peering">Virtual Network Peering<a class="headerlink" href="#virtual-network-peering" title="Permanent link">&para;</a></h4>
+<p>Virtual Network Peerings provide connectivity between virtual networks within regions, across regions and subscriptions</p>
+<ul>
+<li>Peering connections must be created in both directions</li>
+<li>Non-transitive</li>
+<li>CIDR must not overlap</li>
+<li>Default Routes - The default route list has grown and is Azure managed. Azure is using the "more specific" approach - if there is no more specific drop all traffic.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Address Prefix</th>
+<th>Next Hop</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtual network address range</td>
+<td>Virtual Network</td>
+<td>routes traffic within the virtual network</td>
+</tr>
+<tr>
+<td>0.0.0.0/0</td>
+<td>Internet</td>
+<td>Default route to the internet</td>
+</tr>
+<tr>
+<td>10.0.0.0/8 <br> 172.16.0.0/12 <br> 192.168.0.0/16</td>
+<td>None</td>
+<td>Drops private Ip address ranges that are not part of the virtual network</td>
+</tr>
+<tr>
+<td>100.64.0.0/10</td>
+<td>None</td>
+<td>Drops shared address space traffic</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Custom Routes are user-defined or learned via BGP</li>
+</ul>
+<h4 id="route-tables">Route Tables<a class="headerlink" href="#route-tables" title="Permanent link">&para;</a></h4>
+<ul>
+<li>can be associated to subnets in different VPCs. ( what would be a use-case for this?)</li>
+</ul>
+<h4 id="gateways">Gateways<a class="headerlink" href="#gateways" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Virtual Network Gateway</p>
+<ul>
+<li>provides either VPN or ExpressRoute connectivity to Azure. </li>
+<li>requires a special gateway subnet with a minimun of a /27 CIDR block  </li>
+<li>Similar to an AWS VGW - its VPC specific</li>
+</ul>
+</li>
+<li>
+<p>VPN Gateway</p>
+<ul>
+<li>provides external connectivity - on-premises networks, cloud providers, or remote devices </li>
+<li>supports site to site, multiple sites, and point to site connections</li>
+<li>route-based VPN and policy-based connections</li>
+</ul>
+</li>
+<li>
+<p>ExpressRoute</p>
+<ul>
+<li>direct, private connection between on-premises network and Azure</li>
+<li>connectivity to Azure VNets using private peering or Azure services using microsoft services</li>
+<li>connection types:<ul>
+<li>IPVPN - integrates with MPLS (VPLS)</li>
+<li>Point-to-Point Ethernet (Ethernet Private Links - EPLs)</li>
+<li>CloudExchange to connect from co-locations</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table><tr>
+<th>VPN Gateway</th>
+<th>Express Route</th>
+</tr>
+<tr><td>
+
+- connects on-premises networks and other clouds<br>
+- connects only to virtual networks<br>
+- connects via the internet<br>
+
+</td><td>
+
+- connects on-premises networks<br>
+- connects to virtual networks and microsoft services<br>
+- connects via dedicated, private connections<br>
+
+</td></tr></table>
+
+<p><img alt="image" src="https://user-images.githubusercontent.com/40032360/196560564-d0d24907-e959-4c3e-9bfb-62e9a814572d.png" /></p>
+<h4 id="virtual-wan">Virtual WAN<a class="headerlink" href="#virtual-wan" title="Permanent link">&para;</a></h4>
+<p>Virtual WANs are used to manage communication between multiple virtual networks, on-premises networks, and remote sites. It also improves performance by using azure backbone.</p>
+<ul>
+<li>
+<p>While the concept of Virtual WAN is global, the actual Virtual WAN resource is Resource Manager-based and deployed regionally. If the virtual WAN region itself were to have an issue, all hubs in that virtual WAN will continue to function as is, but the user won't be able to create new hubs until the virtual WAN region is available.</p>
+</li>
+<li>
+<p>Virtual WAN is assigned a region. However, Virtual WAN resources such as Hubs and Gateways can be in any region.</p>
+</li>
+<li>
+<p>managed hub-and-spoke provides connecitivity between virtual networks, on-premises networks and remote workers</p>
+</li>
+<li>one hub per region</li>
+<li>regional hubs are dynamically connected to each other</li>
+<li>similar to an AWS Transit Gateway</li>
+</ul>
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-10-18T23:19:54.317Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36\&quot; etag=\&quot;zSWiPALzFVmc3N7BDeYI\&quot; version=\&quot;20.4.1\&quot; type=\&quot;github\&quot; pages=\&quot;2\&quot;&gt;&lt;diagram id=\&quot;pevED-ohvEYcTep_g1xU\&quot; name=\&quot;wan-hubs\&quot;&gt;&lt;mxGraphModel dx=\&quot;1422\&quot; dy=\&quot;954\&quot; grid=\&quot;1\&quot; gridSize=\&quot;10\&quot; guides=\&quot;1\&quot; tooltips=\&quot;1\&quot; connect=\&quot;1\&quot; arrows=\&quot;1\&quot; fold=\&quot;1\&quot; page=\&quot;1\&quot; pageScale=\&quot;1\&quot; pageWidth=\&quot;3600\&quot; pageHeight=\&quot;2400\&quot; math=\&quot;0\&quot; shadow=\&quot;0\&quot;&gt;&lt;root&gt;&lt;mxCell id=\&quot;0\&quot; /&gt;&lt;mxCell id=\&quot;1\&quot; parent=\&quot;0\&quot; /&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-25\&quot; value=\&quot;\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;dashPattern=1 1;strokeColor=#d6b656;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;183.75\&quot; y=\&quot;164\&quot; width=\&quot;337.5\&quot; height=\&quot;246\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-1\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;199\&quot; y=\&quot;200\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-16\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-2\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-3\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-17\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.493;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-2\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-18\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-2\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-4\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-22\&quot; style=\&quot;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.462;exitY=0.625;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.369;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#dae8fc;strokeColor=#6c8ebf;shape=link;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-2\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-10\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-3\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;319\&quot; y=\&quot;200\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-4\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;439\&quot; y=\&quot;200\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-5\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;619\&quot; y=\&quot;200\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-19\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-6\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-7\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-20\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-6\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-5\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-21\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-6\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-8\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-7\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;739\&quot; y=\&quot;200\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-8\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;859\&quot; y=\&quot;200\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-9\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;385\&quot; y=\&quot;690\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-13\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-10\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-11\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-14\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-10\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-9\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-15\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-10\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-12\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-23\&quot; style=\&quot;edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.615;entryY=0.938;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.523;exitY=0.469;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#dae8fc;strokeColor=#6c8ebf;shape=link;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-10\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-6\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;780\&quot; y=\&quot;360\&quot; /&gt;&lt;/Array&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-10\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_WANs.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;506\&quot; y=\&quot;540\&quot; width=\&quot;65\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-11\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;505\&quot; y=\&quot;690\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-12\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_Networks.svg;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;625\&quot; y=\&quot;690\&quot; width=\&quot;67\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-24\&quot; style=\&quot;edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.615;entryY=0.781;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.308;exitY=0.781;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#dae8fc;strokeColor=#6c8ebf;shape=link;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;tpGTdEmGeSWk9LXFUpDb-6\&quot; target=\&quot;tpGTdEmGeSWk9LXFUpDb-2\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-6\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_WANs.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;740\&quot; y=\&quot;320\&quot; width=\&quot;65\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-2\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Virtual_WANs.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;320\&quot; y=\&quot;320\&quot; width=\&quot;65\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-26\&quot; value=\&quot;\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;dashPattern=1 1;strokeColor=#6c8ebf;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;610\&quot; y=\&quot;150\&quot; width=\&quot;337.5\&quot; height=\&quot;246\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-27\&quot; value=\&quot;\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;dashPattern=1 1;strokeColor=#9673a6;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;369.75\&quot; y=\&quot;530\&quot; width=\&quot;337.5\&quot; height=\&quot;246\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-28\&quot; value=\&quot;West US 3\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 1;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;210\&quot; y=\&quot;130\&quot; width=\&quot;270\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-29\&quot; value=\&quot;Australia East\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 1;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;643.75\&quot; y=\&quot;120\&quot; width=\&quot;270\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-30\&quot; value=\&quot;Central India\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 1;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;403.5\&quot; y=\&quot;776\&quot; width=\&quot;270\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;tpGTdEmGeSWk9LXFUpDb-31\&quot; value=\&quot;Virtual WAN Hubs&amp;lt;br&amp;gt;Full Mesh\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 1;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;416\&quot; y=\&quot;440\&quot; width=\&quot;270\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;&lt;/diagram&gt;&lt;diagram id=\&quot;82LRzH5r5Cjn5mGQnUc_\&quot; name=\&quot;landing-zones\&quot;&gt;&lt;mxGraphModel dx=\&quot;1422\&quot; dy=\&quot;954\&quot; grid=\&quot;1\&quot; gridSize=\&quot;10\&quot; guides=\&quot;1\&quot; tooltips=\&quot;1\&quot; connect=\&quot;1\&quot; arrows=\&quot;1\&quot; fold=\&quot;1\&quot; page=\&quot;1\&quot; pageScale=\&quot;1\&quot; pageWidth=\&quot;3600\&quot; pageHeight=\&quot;2400\&quot; math=\&quot;0\&quot; shadow=\&quot;0\&quot;&gt;&lt;root&gt;&lt;mxCell id=\&quot;0\&quot; /&gt;&lt;mxCell id=\&quot;1\&quot; parent=\&quot;0\&quot; /&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-1\&quot; value=\&quot;\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;390\&quot; y=\&quot;460\&quot; width=\&quot;320\&quot; height=\&quot;240\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-2\&quot; value=\&quot;\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;118\&quot; y=\&quot;460\&quot; width=\&quot;260.5\&quot; height=\&quot;240\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-3\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-4\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-10\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-4\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;570\&quot; y=\&quot;40\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-5\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;141\&quot; y=\&quot;600\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-6\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-10\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-14\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-7\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-10\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-18\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-8\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-10\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-19\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-9\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-10\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-20\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-10\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;570\&quot; y=\&quot;220\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-11\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-14\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-21\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-12\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-14\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-22\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-13\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-14\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-23\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-14\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;210\&quot; y=\&quot;380\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-15\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-18\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-29\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-16\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-18\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-31\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-17\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-18\&quot; target=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-30\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-18\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;502\&quot; y=\&quot;380\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-19\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;742\&quot; y=\&quot;380\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-20\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;982\&quot; y=\&quot;380\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-21\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;130\&quot; y=\&quot;500\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-22\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;210\&quot; y=\&quot;500\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-23\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;290\&quot; y=\&quot;500\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-24\&quot; value=\&quot;Management\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;118\&quot; y=\&quot;564\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-25\&quot; value=\&quot;Connectivity\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;197\&quot; y=\&quot;564\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-26\&quot; value=\&quot;Security\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;276\&quot; y=\&quot;564\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-27\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;221\&quot; y=\&quot;600\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-28\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;299\&quot; y=\&quot;600\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-29\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;422\&quot; y=\&quot;500\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-30\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;502\&quot; y=\&quot;500\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-31\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Management_Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;582\&quot; y=\&quot;500\&quot; width=\&quot;66\&quot; height=\&quot;64\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-32\&quot; value=\&quot;Corp\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;410\&quot; y=\&quot;564\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-33\&quot; value=\&quot;DMZ\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;489\&quot; y=\&quot;564\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-34\&quot; value=\&quot;External\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;568\&quot; y=\&quot;564\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-35\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;742\&quot; y=\&quot;460\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-36\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;764\&quot; y=\&quot;480\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-37\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;786\&quot; y=\&quot;500\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-38\&quot; value=\&quot;Platform\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;118\&quot; y=\&quot;380\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-39\&quot; value=\&quot;Landing Zones\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;412\&quot; y=\&quot;380\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-40\&quot; value=\&quot;Decommissioned\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;645\&quot; y=\&quot;380\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-41\&quot; value=\&quot;Sandbox\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;892\&quot; y=\&quot;380\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-42\&quot; value=\&quot;Gtz4All\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;630\&quot; y=\&quot;220\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-43\&quot; value=\&quot;Tenant Root Management Group\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;636\&quot; y=\&quot;57\&quot; width=\&quot;124\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-44\&quot; value=\&quot;Prod\&quot; style=\&quot;text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;dashed=1;dashPattern=1 1;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;413\&quot; y=\&quot;588\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-45\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;473\&quot; y=\&quot;591.76\&quot; width=\&quot;30\&quot; height=\&quot;24.71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-46\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;396\&quot; y=\&quot;588\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-47\&quot; value=\&quot;Test\&quot; style=\&quot;text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;dashed=1;dashPattern=1 1;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;435\&quot; y=\&quot;620\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-48\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;495\&quot; y=\&quot;623.76\&quot; width=\&quot;30\&quot; height=\&quot;24.71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-49\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;418\&quot; y=\&quot;620\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-50\&quot; value=\&quot;Prod\&quot; style=\&quot;text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;dashed=1;dashPattern=1 1;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;587\&quot; y=\&quot;588\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-51\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;647\&quot; y=\&quot;591.76\&quot; width=\&quot;30\&quot; height=\&quot;24.71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-52\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;570\&quot; y=\&quot;588\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-53\&quot; value=\&quot;Test\&quot; style=\&quot;text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;dashed=1;dashPattern=1 1;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;609\&quot; y=\&quot;620\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-54\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;669\&quot; y=\&quot;623.76\&quot; width=\&quot;30\&quot; height=\&quot;24.71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-55\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;592\&quot; y=\&quot;620\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-56\&quot; value=\&quot;Dev&amp;amp;nbsp;\&quot; style=\&quot;text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;dashed=1;dashPattern=1 1;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;957\&quot; y=\&quot;450\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-57\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;1017\&quot; y=\&quot;453.76\&quot; width=\&quot;30\&quot; height=\&quot;24.71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-58\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;940\&quot; y=\&quot;450\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-59\&quot; value=\&quot;Sbox\&quot; style=\&quot;text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;dashed=1;dashPattern=1 1;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;979\&quot; y=\&quot;482\&quot; width=\&quot;90\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-60\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Groups.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;1039\&quot; y=\&quot;485.76\&quot; width=\&quot;30\&quot; height=\&quot;24.71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;9ZhKlaBwJ4WcIFQZ3bKw-61\&quot; value=\&quot;\&quot; style=\&quot;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Subscriptions.svg;\&quot; vertex=\&quot;1\&quot; parent=\&quot;1\&quot;&gt;&lt;mxGeometry x=\&quot;962\&quot; y=\&quot;482\&quot; width=\&quot;44\&quot; height=\&quot;71\&quot; as=\&quot;geometry\&quot; /&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+
+<h4 id="load-balancing">Load balancing<a class="headerlink" href="#load-balancing" title="Permanent link">&para;</a></h4>
+<table><tr>
+<th>Load Balancer</th>
+<th>Application Gateway</th>
+</tr>
+<tr><td>
+
+- Layer 4 / TCP/IP Applications<br>
+- load balancing based on source/destination<br>
+- low latency<br>
+
+</td><td>
+
+- Layer 7 - HTTP/HTTPs based application<br>
+- load balancing based on source/destination/hostname/path<br>
+- Web Application Firewall is supported<br>
+
+</td></tr></table>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../mgmt-groups/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Azure Management Groups" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Azure Management Groups
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../tshoo/" class="md-footer__link md-footer__link--next" aria-label="Next: Azure Troubleshooting Notes" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Azure Troubleshooting Notes
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright 2022 <a href='https://gtz4all.github.io'>Gtz4All</a>. All Rights Reserved.
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://gtz4all.github.io/" target="_blank" rel="noopener" title="gtz4all.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/gtz4all" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    <a href="gtz4all@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "header.autohide", "navigation.prune"], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
