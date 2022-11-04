@@ -1,7 +1,7 @@
 nav:
     - index.md
-    - Cloud1: cloud
+    - Cloud1: cloud 
     - DevOps: devops
     - Networking: networking
     - Tips&Tricks: tips-tricks
-    - Contact Us: contact-us
+    - Contact Info: contact-us
