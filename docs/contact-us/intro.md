@@ -7,4 +7,4 @@ title: "Kervin Gutierrez"
 
 # Gtz4All
 
-The objective of this guide is to provide an guidance and best practices
+The purpose of this website is to demonstrate my coding ability within this website as well as maintain record of my programming projects.
