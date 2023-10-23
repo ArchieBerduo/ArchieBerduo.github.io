@@ -1660,10 +1660,10 @@ cat &lt;<EOT > /usr/lib/cgi-bin/http-env</p>
 <p>import os</p>
 <p>def main():
     print("Content-type:text/html\r\n\r\n")</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">sorted</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span><span class="err">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;%s = %s&lt;/br/&gt;&#39;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="nf">var</span><span class="p">,</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="o">[</span><span class="n">var</span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">sorted</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span><span class="err">:</span>
+<span class="w">    </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;%s = %s&lt;/br/&gt;&#39;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="nf">var</span><span class="p">,</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="o">[</span><span class="n">var</span><span class="o">]</span><span class="p">))</span>
 
-<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span>
 </code></pre></div>
 
 <p>if <strong>name</strong> == '<strong>main</strong>':
